@@ -56,6 +56,8 @@ namespace Ferret.Services
             XmlSerializer serializer = new XmlSerializer(typeof(recherche));
             recherche recherche = (recherche)serializer.Deserialize(response);
 
+            Log(clientURL);
+
             return recherche.pageMax ?? 1;
         }
 
@@ -69,6 +71,7 @@ namespace Ferret.Services
             XmlSerializer serializer = new XmlSerializer(typeof(recherche));
             recherche recherche = (recherche)serializer.Deserialize(response);
 
+            Log(clientURL);
         }
 
         private HousingUnit MapToHousingUnit(recherche recherche)
@@ -76,6 +79,14 @@ namespace Ferret.Services
             HousingUnit unit = new HousingUnit();
 
             return unit;
+        }
+
+        private void Log(string value)
+        {
+            string path = @"/Users/smoreau/Documents/Github/Ferret/Logs/logs";
+            List<string> logs = new List<string>();
+            logs.Add(DateTime.Now + ";" + value);
+            File.AppendAllLines(path,logs);
         }
     }
 }
