@@ -56,8 +56,6 @@ namespace Ferret.Services
             XmlSerializer serializer = new XmlSerializer(typeof(recherche));
             recherche recherche = (recherche)serializer.Deserialize(response);
 
-            Console.Write(DateTime.Now.ToString() + ";" + clientURL);
-
             return recherche.pageMax ?? 1;
         }
 
@@ -69,9 +67,8 @@ namespace Ferret.Services
             Stream response = await client.GetStreamAsync(clientURL);
 
             XmlSerializer serializer = new XmlSerializer(typeof(recherche));
-            //recherche recherche = (recherche)serializer.Deserialize(response);
+            recherche recherche = (recherche)serializer.Deserialize(response);
 
-            Console.Write(DateTime.Now.ToString() + ";" + clientURL);
         }
 
         private HousingUnit MapToHousingUnit(recherche recherche)

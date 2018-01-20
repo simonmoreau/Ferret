@@ -181,9 +181,9 @@ namespace Ferret.Models
     public partial class rechercheAnnonce
     {
 
-        private int? idTiersField;
+        private string idTiersField;
 
-        private int? idAnnonceField;
+        private int idAnnonceField;
 
         private int? idAgenceField;
 
@@ -312,7 +312,8 @@ namespace Ferret.Models
         private string sipiscineField;
 
         /// <remarks/>
-        public int? idTiers
+        [XmlElement(IsNullable = true)]
+        public string idTiers
         {
             get
             {
@@ -325,7 +326,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? idAnnonce
+        public int idAnnonce
         {
             get
             {
