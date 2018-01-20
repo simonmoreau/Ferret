@@ -13,6 +13,8 @@ namespace Ferret.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            Ferret.Services.SeLogerRetriever retriever = new Ferret.Services.SeLogerRetriever();
+            retriever.Retrive("750116").Wait();
             return new string[] { "value1", "value2" };
         }
 
