@@ -9,7 +9,7 @@ namespace Ferret.Models
         {
         }
 
-        public DbSet<HousingUnit> TodoItems { get; set; }
+        public DbSet<HousingUnit> HousingUnits { get; set; }
 
     }
 }

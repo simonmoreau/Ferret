@@ -32,13 +32,13 @@ namespace Ferret.Models
 
         private string resumeSansTriField;
 
-        private short? nbTrouveesField;
+        private int? nbTrouveesField;
 
-        private short? nbAffichablesField;
+        private int? nbAffichablesField;
 
-        private sbyte? pageCouranteField;
+        private string pageCouranteField;
 
-        private sbyte? pageMaxField;
+        private int? pageMaxField;
 
         private string pageSuivanteField;
 
@@ -74,7 +74,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public short? nbTrouvees
+        public int? nbTrouvees
         {
             get
             {
@@ -88,7 +88,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public short? nbAffichables
+        public int? nbAffichables
         {
             get
             {
@@ -102,7 +102,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public sbyte? pageCourante
+        public string pageCourante
         {
             get
             {
@@ -116,7 +116,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public sbyte? pageMax
+        public int? pageMax
         {
             get
             {
@@ -181,19 +181,19 @@ namespace Ferret.Models
     public partial class rechercheAnnonce
     {
 
-        private int idTiersField;
+        private int? idTiersField;
 
-        private int idAnnonceField;
+        private int? idAnnonceField;
 
-        private int idAgenceField;
+        private int? idAgenceField;
 
-        private int idPublicationField;
+        private int? idPublicationField;
 
-        private sbyte idTypeTransactionField;
+        private int? idTypeTransactionField;
 
-        private sbyte idTypeBienField;
+        private int? idTypeBienField;
 
-        private sbyte idSousTypeBienField;
+        private int? idSousTypeBienField;
 
         private bool idSousTypeBienFieldSpecified;
 
@@ -209,43 +209,43 @@ namespace Ferret.Models
 
         private string descriptifField;
 
-        private float prixField;
+        private double? prixField;
 
         private string prixUniteField;
 
         private string prixMentionField;
 
-        private float loyerAnnuelM2Field;
+        private double? loyerAnnuelM2Field;
 
         private bool loyerAnnuelM2FieldSpecified;
 
         private string loyerAnnuelM2UniteField;
 
-        private double loyerAnnuelField;
+        private double? loyerAnnuelField;
 
         private bool loyerAnnuelFieldSpecified;
 
         private string loyerAnnuelUniteField;
 
-        private sbyte nbPieceField;
+        private int? nbPieceField;
 
-        private sbyte nbChambreField;
+        private int? nbChambreField;
 
         private bool nbChambreFieldSpecified;
 
-        private float surfaceField;
+        private double? surfaceField;
 
         private bool surfaceFieldSpecified;
 
         private string surfaceUniteField;
 
-        private short idPaysField;
+        private int? idPaysField;
 
         private string paysField;
 
-        private int cpField;
+        private int? cpField;
 
-        private int codeInseeField;
+        private int? codeInseeField;
 
         private string villeField;
 
@@ -259,9 +259,9 @@ namespace Ferret.Models
 
         private string permaLienField;
 
-        private float latitudeField;
+        private double? latitudeField;
 
-        private float longitudeField;
+        private double? longitudeField;
 
         private string llPrecisionField;
 
@@ -312,7 +312,7 @@ namespace Ferret.Models
         private string sipiscineField;
 
         /// <remarks/>
-        public int idTiers
+        public int? idTiers
         {
             get
             {
@@ -325,7 +325,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int idAnnonce
+        public int? idAnnonce
         {
             get
             {
@@ -338,7 +338,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int idAgence
+        public int? idAgence
         {
             get
             {
@@ -351,7 +351,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int idPublication
+        public int? idPublication
         {
             get
             {
@@ -364,7 +364,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public sbyte idTypeTransaction
+        public int? idTypeTransaction
         {
             get
             {
@@ -377,7 +377,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public sbyte idTypeBien
+        public int? idTypeBien
         {
             get
             {
@@ -390,7 +390,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public sbyte idSousTypeBien
+        public int? idSousTypeBien
         {
             get
             {
@@ -495,7 +495,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public float prix
+        public double? prix
         {
             get
             {
@@ -534,7 +534,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public float loyerAnnuelM2
+        public double? loyerAnnuelM2
         {
             get
             {
@@ -574,7 +574,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public double loyerAnnuel
+        public double? loyerAnnuel
         {
             get
             {
@@ -614,7 +614,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public sbyte nbPiece
+        public int? nbPiece
         {
             get
             {
@@ -627,7 +627,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public sbyte nbChambre
+        public int? nbChambre
         {
             get
             {
@@ -654,7 +654,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public float surface
+        public double? surface
         {
             get
             {
@@ -694,7 +694,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public short idPays
+        public int? idPays
         {
             get
             {
@@ -720,7 +720,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int cp
+        public int? cp
         {
             get
             {
@@ -733,7 +733,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int codeInsee
+        public int? codeInsee
         {
             get
             {
@@ -828,7 +828,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public float latitude
+        public double? latitude
         {
             get
             {
@@ -841,7 +841,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public float longitude
+        public double? longitude
         {
             get
             {
@@ -1180,7 +1180,7 @@ namespace Ferret.Models
 
         private string siAudiotelField;
 
-        private int idPublicationField;
+        private int? idPublicationField;
 
         private string nomField;
 
@@ -1206,7 +1206,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int idPublication
+        public int? idPublication
         {
             get
             {
