@@ -59,7 +59,7 @@ namespace Ferret.Services
             XmlSerializer serializer = new XmlSerializer(typeof(recherche));
             recherche recherche = (recherche)serializer.Deserialize(response);
             UpdateDb(recherche);
-            
+
             Log(clientURL);
 
             return recherche.pageMax ?? 1;
@@ -112,7 +112,8 @@ namespace Ferret.Services
                 Description = annonce.descriptif,
                 Price = annonce.prix ?? 0,
                 Area = annonce.surface ?? 0,
-                Coordinates = new Coordinates(annonce.latitude ?? 0, annonce.longitude ?? 0),
+                Latitude = annonce.latitude ?? 0,
+                Longitude =  annonce.longitude ?? 0,
                 ConstructionYear = annonce.anneeconstruct ?? 0,
                 RoomNumber = annonce.nbPiece ?? 0,
                 BedroomNumber = annonce.nbChambre ?? 0,
