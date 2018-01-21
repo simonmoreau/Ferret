@@ -5,8 +5,6 @@ namespace Ferret.Models
     public class HousingUnit
     {
         public long Id { get; set; }
-        public string Name { get; set; }
-        public bool IsComplete { get; set; }
         public TransactionType TransactionType {get;set;}
         public HousingType HousingType{get;set;}
         public DateTime CreationDate{get;set;}
@@ -45,6 +43,7 @@ namespace Ferret.Models
     public enum HousingType
     {
         appartment,
-        house
+        house,
+        undefined
     }
 }

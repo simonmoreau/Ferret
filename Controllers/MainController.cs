@@ -26,6 +26,13 @@ namespace Ferret.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        // GET api/main/number
+        [HttpGet("number")]
+        public string GetNumber()
+        {
+            return _context.HousingUnits.Count().ToString();
+        }
+
         // GET api/main/5
         [HttpGet("{id}")]
         public string Get(int id)

@@ -289,27 +289,27 @@ namespace Ferret.Models
 
         private rechercheAnnoncePhotos photosField;
 
-        private string nbsallesdebainField;
+        private int? nbsallesdebainField;
 
-        private string nbsalleseauField;
+        private int? nbsalleseauField;
 
-        private string nbtoilettesField;
+        private int? nbtoilettesField;
 
         private string sisejourField;
 
         private string surfsejourField;
 
-        private string anneeconstructField;
+        private int? anneeconstructField;
 
-        private string nbparkingsField;
+        private int? nbparkingsField;
 
-        private string nbboxesField;
+        private int? nbboxesField;
 
         private string siterrasseField;
 
-        private string nbterrassesField;
+        private int? nbterrassesField;
 
-        private string sipiscineField;
+        private bool? sipiscineField;
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
@@ -1027,7 +1027,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string nbsallesdebain
+        public int? nbsallesdebain
         {
             get
             {
@@ -1040,7 +1040,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string nbsalleseau
+        public int? nbsalleseau
         {
             get
             {
@@ -1053,7 +1053,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string nbtoilettes
+        public int? nbtoilettes
         {
             get
             {
@@ -1092,7 +1092,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string anneeconstruct
+        public int? anneeconstruct
         {
             get
             {
@@ -1105,7 +1105,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string nbparkings
+        public int? nbparkings
         {
             get
             {
@@ -1118,7 +1118,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string nbboxes
+        public int? nbboxes
         {
             get
             {
@@ -1144,7 +1144,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string nbterrasses
+        public int? nbterrasses
         {
             get
             {
@@ -1157,7 +1157,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public string sipiscine
+        public bool? sipiscine
         {
             get
             {
