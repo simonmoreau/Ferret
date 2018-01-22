@@ -17,13 +17,22 @@ namespace Ferret.Controllers
             _context = context;
         }
 
+        // // GET api/main
+        // [HttpGet]
+        // public async Task<IActionResult> Get()
+        // {
+        //     Ferret.Services.SeLogerRetriever retriever = new Ferret.Services.SeLogerRetriever(_context);
+        //     retriever.Retrive();
+        //     return new ObjectResult("Completed");
+        // }
+
         // GET api/main
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
             Ferret.Services.SeLogerRetriever retriever = new Ferret.Services.SeLogerRetriever(_context);
             retriever.Retrive();
-            return new string[] { "value1", "value2" };
+            return "Completed";
         }
 
         // GET api/main/number

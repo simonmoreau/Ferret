@@ -227,9 +227,9 @@ namespace Ferret.Models
 
         private string loyerAnnuelUniteField;
 
-        private int? nbPieceField;
+        private string nbPieceField;
 
-        private int? nbChambreField;
+        private string nbChambreField;
 
         private bool nbChambreFieldSpecified;
 
@@ -289,27 +289,27 @@ namespace Ferret.Models
 
         private rechercheAnnoncePhotos photosField;
 
-        private int? nbsallesdebainField;
+        private string nbsallesdebainField;
 
-        private int? nbsalleseauField;
+        private string nbsalleseauField;
 
-        private int? nbtoilettesField;
+        private string nbtoilettesField;
 
         private string sisejourField;
 
         private string surfsejourField;
 
-        private int? anneeconstructField;
+        private string anneeconstructField;
 
-        private int? nbparkingsField;
+        private string nbparkingsField;
 
-        private int? nbboxesField;
+        private string nbboxesField;
 
         private string siterrasseField;
 
-        private int? nbterrassesField;
+        private string nbterrassesField;
 
-        private bool? sipiscineField;
+        private string sipiscineField;
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
@@ -615,7 +615,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbPiece
+        public string nbPiece
         {
             get
             {
@@ -628,7 +628,7 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbChambre
+        public string nbChambre
         {
             get
             {
@@ -1027,7 +1027,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbsallesdebain
+        [XmlElement(IsNullable = true)]
+        public string nbsallesdebain
         {
             get
             {
@@ -1040,7 +1041,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbsalleseau
+        [XmlElement(IsNullable = true)]
+        public string nbsalleseau
         {
             get
             {
@@ -1053,7 +1055,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbtoilettes
+        [XmlElement(IsNullable = true)]
+        public string nbtoilettes
         {
             get
             {
@@ -1092,7 +1095,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? anneeconstruct
+        [XmlElement(IsNullable = true)]
+        public string anneeconstruct
         {
             get
             {
@@ -1105,7 +1109,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbparkings
+        [XmlElement(IsNullable = true)]
+        public string nbparkings
         {
             get
             {
@@ -1118,7 +1123,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbboxes
+        [XmlElement(IsNullable = true)]
+        public string nbboxes
         {
             get
             {
@@ -1144,7 +1150,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public int? nbterrasses
+        [XmlElement(IsNullable = true)]
+        public string nbterrasses
         {
             get
             {
@@ -1157,7 +1164,8 @@ namespace Ferret.Models
         }
 
         /// <remarks/>
-        public bool? sipiscine
+        [XmlElement(IsNullable = true)]
+        public string sipiscine
         {
             get
             {

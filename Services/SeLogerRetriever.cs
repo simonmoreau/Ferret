@@ -10,6 +10,17 @@ using System.Xml.Serialization;
 
 namespace Ferret.Services
 {
+    class Page
+    {
+        public Page(int pageMax, List<HousingUnit> housingUnits)
+        {
+            this.PageMax = pageMax;
+            this.HousingUnits = HousingUnits;
+        }
+        public int PageMax { get; set; }
+        public List<HousingUnit> HousingUnits { get; set; }
+    }
+
     public class SeLogerRetriever : IRetriver
     {
         private readonly FerretContext _context;
@@ -17,90 +28,110 @@ namespace Ferret.Services
 
         public SeLogerRetriever(FerretContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
-        public void Retrive()
+        public async void Retrive()
         {
             string[] inseeCodes = { "750101", "750102", "750103", "750104", "750105", "750106" };
 
+            List<Task<List<HousingUnit>>> tasks = new List<Task<List<HousingUnit>>>();
+            List<HousingUnit> housingUnits = new List<HousingUnit>();
+
             foreach (string inseeCode in inseeCodes)
             {
-                RetriveFromLocationAsync(inseeCode);
+                List<HousingUnit> units = await RetriveFromLocationAsync(inseeCode);
+                Log(inseeCode);
+
+                //Add it to the total
+                housingUnits.AddRange(units);
             }
+
+            Log("End of main loop");
+
         }
 
-        private async void RetriveFromLocationAsync(string localisation)
+        private async Task<List<HousingUnit>> RetriveFromLocationAsync(string localisation)
         {
             _transactionType = TransactionType.rent;
+            List<HousingUnit> housingUnits = new List<HousingUnit>();
 
             string clientURL = $"http://ws.seloger.com/search.xml?ci={localisation}&idtt=1";
 
-            int pageNumber = await RetrivePageFromURLAsync(clientURL);
+            Page firstPage = await RetrivePageFromURLAsync(clientURL);
+            if (firstPage != null)
+            {
+                if (firstPage.HousingUnits != null)
+                {
+                    if (firstPage.HousingUnits.Count != 0)
+                    {
+                        housingUnits.AddRange(firstPage.HousingUnits);
+                    }
+                }
+                else
+                {
+                    Log("firstPage.HousingUnits is null;" + clientURL);
+                }
+
+            }
+            else
+            {
+                Log("First page is null;" + clientURL);
+            }
+
+            int pageNumber = firstPage.PageMax;
 
             //If the result is paginated
             if (pageNumber > 1)
             {
+                List<Task<Page>> tasks = new List<Task<Page>>();
+
                 for (int i = 2; i <= pageNumber; i++)
                 {
                     string paginatedClientUrl = clientURL + $"&SEARCHpg={i.ToString()}";
-                    RetriveFromURLAsync(paginatedClientUrl);
+                    //tasks.Add(RetrivePageFromURLAsync(paginatedClientUrl));
                 }
+
+                foreach (Task<Page> task in tasks)
+                {
+                    Page page = await task;
+                    housingUnits.AddRange(page.HousingUnits);
+                }
+            }
+
+            return housingUnits;
+
+        }
+
+        private async Task<Page> RetrivePageFromURLAsync(string clientURL)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Clear();
+
+            using (Stream response = await client.GetStreamAsync(clientURL))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(recherche));
+                recherche recherche = (recherche)serializer.Deserialize(response);
+
+                List<HousingUnit> housingUnits = RetriveHousingUnits(recherche);
+
+                Log("RetrivePageFromURLAsync;" + clientURL + ";" + housingUnits.Count().ToString());
+
+                return new Page(recherche.pageMax ?? 1, housingUnits);
             }
         }
 
-        private async Task<int> RetrivePageFromURLAsync(string clientURL)
+        private List<HousingUnit> RetriveHousingUnits(recherche recherche)
         {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            Stream response = await client.GetStreamAsync(clientURL);
-
-            XmlSerializer serializer = new XmlSerializer(typeof(recherche));
-            recherche recherche = (recherche)serializer.Deserialize(response);
-            UpdateDb(recherche);
-
-            Log(clientURL);
-
-            return recherche.pageMax ?? 1;
-        }
-
-        private async void RetriveFromURLAsync(string clientURL)
-        {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            Stream response = await client.GetStreamAsync(clientURL);
-
-            XmlSerializer serializer = new XmlSerializer(typeof(recherche));
-            recherche recherche = (recherche)serializer.Deserialize(response);
-            UpdateDb(recherche);
-
-            Log(clientURL);
-        }
-
-        private void UpdateDb(recherche recherche)
-        {
+            List<HousingUnit> units = new List<HousingUnit>();
             foreach (rechercheAnnonce rechercheAnnonce in recherche.annonces)
             {
-                HousingUnit existingHousingUnit = _context.HousingUnits.FirstOrDefault(t => t.Id == rechercheAnnonce.idAgence);
-                if (existingHousingUnit == null)
-                {
-                    //Create an new HousingUnit
-                    HousingUnit unit = MapToHousingUnit(rechercheAnnonce);
-                    _context.HousingUnits.Add(unit);
-                    _context.SaveChanges();
-                }
-                else
-                {
-                    //Update the date
-                    existingHousingUnit.RefreshDate = DateTime.Now;
-                    _context.HousingUnits.Update(existingHousingUnit);
-                    _context.SaveChanges();
-                }
+                units.Add(MapToHousingUnit(rechercheAnnonce));
             }
+
+            return units;
         }
-        private HousingUnit MapToHousingUnit(rechercheAnnonce annonce )
+        private HousingUnit MapToHousingUnit(rechercheAnnonce annonce)
         {
             HousingUnit unit = new HousingUnit
             {
@@ -113,19 +144,51 @@ namespace Ferret.Services
                 Price = annonce.prix ?? 0,
                 Area = annonce.surface ?? 0,
                 Latitude = annonce.latitude ?? 0,
-                Longitude =  annonce.longitude ?? 0,
-                ConstructionYear = annonce.anneeconstruct ?? 0,
-                RoomNumber = annonce.nbPiece ?? 0,
-                BedroomNumber = annonce.nbChambre ?? 0,
-                WCNumber = annonce.nbtoilettes ?? 0,
-                BathroomNumber = (annonce.nbsallesdebain ?? 0) + (annonce.nbsalleseau ?? 0),
-                ParkingNumber = annonce.nbparkings ?? 0,
-                BoxNumber = annonce.nbboxes ?? 0,
-                BalconiesNumber = annonce.nbterrasses ?? 0,
-                SwimmingPool = annonce.sipiscine ?? false
+                Longitude = annonce.longitude ?? 0,
+                ConstructionYear = ConvertIntFromString(annonce.anneeconstruct),
+                RoomNumber = ConvertIntFromString(annonce.nbPiece),
+                BedroomNumber = ConvertIntFromString(annonce.nbChambre),
+                WCNumber = ConvertIntFromString(annonce.nbtoilettes),
+                BathroomNumber = ConvertIntFromString(annonce.nbsallesdebain) + ConvertIntFromString(annonce.nbsalleseau),
+                ParkingNumber = ConvertIntFromString(annonce.nbparkings),
+                BoxNumber = ConvertIntFromString(annonce.nbboxes),
+                BalconiesNumber = ConvertIntFromString(annonce.nbterrasses),
+                SwimmingPool = ConvertBoolFromString(annonce.sipiscine)
             };
 
             return unit;
+        }
+
+        private async void UpdateDb(rechercheAnnonce rechercheAnnonce)
+        {
+            HousingUnit existingHousingUnit = (HousingUnit)await _context.FindAsync(typeof(HousingUnit), (long)rechercheAnnonce.idAnnonce);
+            if (existingHousingUnit == null)
+            {
+                //Create an new HousingUnit
+                HousingUnit unit = MapToHousingUnit(rechercheAnnonce);
+                await _context.HousingUnits.AddAsync(unit);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                //Update the date
+                existingHousingUnit.RefreshDate = DateTime.Now;
+                _context.HousingUnits.Update(existingHousingUnit);
+                await _context.SaveChangesAsync();
+            }
+        }
+        private int ConvertIntFromString(string input)
+        {
+            int value = 0;
+            int.TryParse(input, out value);
+            return value;
+        }
+
+        private bool ConvertBoolFromString(string input)
+        {
+            bool value = false;
+            bool.TryParse(input, out value);
+            return value;
         }
         private HousingType SelectHousingType(int? idTypeBien)
         {
@@ -147,4 +210,6 @@ namespace Ferret.Services
             File.AppendAllLines(path, logs);
         }
     }
+
+
 }

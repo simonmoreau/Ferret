@@ -1,0 +1,33 @@
+01/21/2018 14:58:33;750101
+01/21/2018 14:58:34;750102
+01/21/2018 14:58:34;750103
+01/21/2018 14:58:34;750104
+01/21/2018 14:58:34;750105
+01/21/2018 14:58:34;750106
+01/21/2018 14:58:34;End of main loop
+01/21/2018 14:58:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1;50
+01/21/2018 14:58:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:08:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:20:03;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:24:00;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:25:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:28:28;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:30:25;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/21/2018 15:30:25;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750101&idtt=1
+01/21/2018 15:30:25;750101
+01/21/2018 15:30:26;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1;50
+01/21/2018 15:30:26;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750102&idtt=1
+01/21/2018 15:30:26;750102
+01/21/2018 15:30:28;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1;50
+01/21/2018 15:30:28;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750103&idtt=1
+01/21/2018 15:30:28;750103
+01/21/2018 15:30:29;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1;50
+01/21/2018 15:30:29;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750104&idtt=1
+01/21/2018 15:30:29;750104
+01/21/2018 15:30:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1;50
+01/21/2018 15:30:34;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750105&idtt=1
+01/21/2018 15:30:34;750105
+01/21/2018 15:30:57;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1;50
+01/21/2018 15:30:57;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750106&idtt=1
+01/21/2018 15:30:57;750106
+01/21/2018 15:30:57;End of main loop
