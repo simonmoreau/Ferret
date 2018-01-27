@@ -15,7 +15,7 @@ namespace Ferret.Services
         public Page(int pageMax, List<HousingUnit> housingUnits)
         {
             this.PageMax = pageMax;
-            this.HousingUnits = HousingUnits;
+            this.HousingUnits = housingUnits;
         }
         public int PageMax { get; set; }
         public List<HousingUnit> HousingUnits { get; set; }
@@ -31,7 +31,7 @@ namespace Ferret.Services
             this._context = context;
         }
 
-        public async void Retrive()
+        public async Task Retrive()
         {
             string[] inseeCodes = { "750101", "750102", "750103", "750104", "750105", "750106" };
 
@@ -40,14 +40,20 @@ namespace Ferret.Services
 
             foreach (string inseeCode in inseeCodes)
             {
-                List<HousingUnit> units = await RetriveFromLocationAsync(inseeCode);
-                Log(inseeCode);
-
-                //Add it to the total
-                housingUnits.AddRange(units);
+                Task<List<HousingUnit>> unitsTask = RetriveFromLocationAsync(inseeCode);
+                tasks.Add(unitsTask);
+                Log(inseeCode + "taskId = " + unitsTask.Id.ToString());
             }
 
-            Log("End of main loop");
+            foreach (Task<List<HousingUnit>> unitsTask in tasks)
+            {
+                List<HousingUnit> housingUnitsFromTask = await unitsTask;
+                //Add it to the total
+                housingUnits.AddRange(housingUnitsFromTask);
+                Log("Units added to the main list;" + "taskId = " + unitsTask.Id.ToString());
+            }
+
+            Log("End of main loop; HousingUnits.Count = " + housingUnits.Count.ToString());
 
         }
 
@@ -61,18 +67,7 @@ namespace Ferret.Services
             Page firstPage = await RetrivePageFromURLAsync(clientURL);
             if (firstPage != null)
             {
-                if (firstPage.HousingUnits != null)
-                {
-                    if (firstPage.HousingUnits.Count != 0)
-                    {
-                        housingUnits.AddRange(firstPage.HousingUnits);
-                    }
-                }
-                else
-                {
-                    Log("firstPage.HousingUnits is null;" + clientURL);
-                }
-
+                housingUnits.AddRange(firstPage.HousingUnits);
             }
             else
             {
@@ -89,7 +84,7 @@ namespace Ferret.Services
                 for (int i = 2; i <= pageNumber; i++)
                 {
                     string paginatedClientUrl = clientURL + $"&SEARCHpg={i.ToString()}";
-                    //tasks.Add(RetrivePageFromURLAsync(paginatedClientUrl));
+                    tasks.Add(RetrivePageFromURLAsync(paginatedClientUrl));
                 }
 
                 foreach (Task<Page> task in tasks)

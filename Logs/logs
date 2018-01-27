@@ -1,33 +1,87 @@
-01/21/2018 14:58:33;750101
-01/21/2018 14:58:34;750102
-01/21/2018 14:58:34;750103
-01/21/2018 14:58:34;750104
-01/21/2018 14:58:34;750105
-01/21/2018 14:58:34;750106
-01/21/2018 14:58:34;End of main loop
-01/21/2018 14:58:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1;50
-01/21/2018 14:58:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:08:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:20:03;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:24:00;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:25:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:28:28;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:30:25;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
-01/21/2018 15:30:25;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750101&idtt=1
-01/21/2018 15:30:25;750101
-01/21/2018 15:30:26;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1;50
-01/21/2018 15:30:26;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750102&idtt=1
-01/21/2018 15:30:26;750102
-01/21/2018 15:30:28;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1;50
-01/21/2018 15:30:28;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750103&idtt=1
-01/21/2018 15:30:28;750103
-01/21/2018 15:30:29;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1;50
-01/21/2018 15:30:29;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750104&idtt=1
-01/21/2018 15:30:29;750104
-01/21/2018 15:30:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1;50
-01/21/2018 15:30:34;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750105&idtt=1
-01/21/2018 15:30:34;750105
-01/21/2018 15:30:57;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1;50
-01/21/2018 15:30:57;firstPage.HousingUnits is null;http://ws.seloger.com/search.xml?ci=750106&idtt=1
-01/21/2018 15:30:57;750106
-01/21/2018 15:30:57;End of main loop
+01/27/2018 14:04:28;750101taskId = 1
+01/27/2018 14:04:28;750102taskId = 2
+01/27/2018 14:04:28;750103taskId = 3
+01/27/2018 14:04:28;750104taskId = 4
+01/27/2018 14:04:28;750105taskId = 5
+01/27/2018 14:04:28;750106taskId = 6
+01/27/2018 14:04:31;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1;50
+01/27/2018 14:04:31;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1;50
+01/27/2018 14:04:31;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1;50
+01/27/2018 14:04:32;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1;50
+01/27/2018 14:04:32;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1;50
+01/27/2018 14:04:33;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=13;6
+01/27/2018 14:04:33;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=17;8
+01/27/2018 14:04:33;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=3;50
+01/27/2018 14:04:33;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1;50
+01/27/2018 14:04:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=10;36
+01/27/2018 14:04:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=11;27
+01/27/2018 14:04:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=10;50
+01/27/2018 14:04:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=2;50
+01/27/2018 14:04:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=12;50
+01/27/2018 14:04:34;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=2;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=7;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=6;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=5;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=7;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=6;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=6;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=6;50
+01/27/2018 14:04:35;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=9;50
+01/27/2018 14:04:36;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=15;50
+01/27/2018 14:04:36;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=9;50
+01/27/2018 14:04:36;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=4;50
+01/27/2018 14:04:36;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=4;50
+01/27/2018 14:04:36;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=7;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=14;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=5;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=3;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=2;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=5;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=16;50
+01/27/2018 14:04:37;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=4;50
+01/27/2018 14:04:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750101&idtt=1&SEARCHpg=8;50
+01/27/2018 14:04:38;Units added to the main list;taskId = 1
+01/27/2018 14:04:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=8;50
+01/27/2018 14:04:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=8;50
+01/27/2018 14:04:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=2;50
+01/27/2018 14:04:38;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=8;50
+01/27/2018 14:04:39;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=9;50
+01/27/2018 14:04:39;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=10;50
+01/27/2018 14:04:39;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=12;16
+01/27/2018 14:04:39;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=4;50
+01/27/2018 14:04:39;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=10;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=3;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=13;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750105&idtt=1&SEARCHpg=9;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=4;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=5;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=6;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=3;50
+01/27/2018 14:04:40;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=9;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=3;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=12;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750103&idtt=1&SEARCHpg=5;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=10;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=11;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=2;50
+01/27/2018 14:04:41;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=8;50
+01/27/2018 14:04:42;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=9;50
+01/27/2018 14:04:42;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=12;50
+01/27/2018 14:04:42;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=6;50
+01/27/2018 14:04:42;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=13;47
+01/27/2018 14:04:42;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=5;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=3;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=2;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750104&idtt=1&SEARCHpg=7;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=4;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=7;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=8;50
+01/27/2018 14:04:43;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=11;50
+01/27/2018 14:04:44;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750102&idtt=1&SEARCHpg=10;50
+01/27/2018 14:04:44;Units added to the main list;taskId = 2
+01/27/2018 14:04:44;Units added to the main list;taskId = 3
+01/27/2018 14:04:44;Units added to the main list;taskId = 4
+01/27/2018 14:04:44;Units added to the main list;taskId = 5
+01/27/2018 14:04:44;RetrivePageFromURLAsync;http://ws.seloger.com/search.xml?ci=750106&idtt=1&SEARCHpg=11;50
+01/27/2018 14:04:44;Units added to the main list;taskId = 6
+01/27/2018 14:04:44;End of main loop; HousingUnits.Count = 3640
