@@ -4,7 +4,8 @@ namespace Ferret.Models
 {
     public class HousingUnit
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
+        public long sourceId {get;set;}
         public TransactionType TransactionType {get;set;}
         public HousingType HousingType{get;set;}
         public DateTime CreationDate{get;set;}

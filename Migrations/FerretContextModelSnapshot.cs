@@ -21,7 +21,7 @@ namespace Ferret.Migrations
 
             modelBuilder.Entity("Ferret.Models.HousingUnit", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("Area");
@@ -59,6 +59,8 @@ namespace Ferret.Migrations
                     b.Property<int>("TransactionType");
 
                     b.Property<int>("WCNumber");
+
+                    b.Property<long>("sourceId");
 
                     b.HasKey("Id");
 

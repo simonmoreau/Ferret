@@ -53,6 +53,21 @@ namespace Ferret.Services
                 Log("Units added to the main list;" + "taskId = " + unitsTask.Id.ToString());
             }
 
+            _context.HousingUnits.AddRange(housingUnits);
+            _context.SaveChanges();
+
+            // foreach (HousingUnit housingUnit in housingUnits)
+            // {
+            //     HousingUnit existingHousingUnit = (HousingUnit)_context.HousingUnits.FirstOrDefault(h => h.sourceId == housingUnit.sourceId);
+
+            //     if (existingHousingUnit == null)
+            //     {
+            //         //Create a new reccord
+            //         _context.HousingUnits.Add(housingUnit);
+            //         _context.SaveChanges();
+            //     }
+            // }
+
             Log("End of main loop; HousingUnits.Count = " + housingUnits.Count.ToString());
 
         }
@@ -130,7 +145,7 @@ namespace Ferret.Services
         {
             HousingUnit unit = new HousingUnit
             {
-                Id = annonce.idAnnonce,
+                sourceId = annonce.idAnnonce,
                 TransactionType = _transactionType,
                 HousingType = SelectHousingType(annonce.idTypeBien),
                 CreationDate = annonce.dtCreation,
@@ -205,6 +220,4 @@ namespace Ferret.Services
             File.AppendAllLines(path, logs);
         }
     }
-
-
 }

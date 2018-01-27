@@ -12,7 +12,7 @@ namespace Ferret.Migrations
                 name: "HousingUnits",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Area = table.Column<double>(nullable: false),
                     BalconiesNumber = table.Column<int>(nullable: false),
@@ -31,7 +31,8 @@ namespace Ferret.Migrations
                     RoomNumber = table.Column<int>(nullable: false),
                     SwimmingPool = table.Column<bool>(nullable: false),
                     TransactionType = table.Column<int>(nullable: false),
-                    WCNumber = table.Column<int>(nullable: false)
+                    WCNumber = table.Column<int>(nullable: false),
+                    sourceId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
