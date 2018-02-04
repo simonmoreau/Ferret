@@ -31,30 +31,45 @@ namespace Ferret.Services
             this._context = context;
         }
 
-        public async Task Retrive()
+        public bool Retrive()
         {
             string[] inseeCodes = { "750101", "750102", "750103", "750104", "750105", "750106" };
+            string[] cp = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "‍2A", "‍2B", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "971", "972", "973", "974", "976" };
 
-            List<Task<List<HousingUnit>>> tasks = new List<Task<List<HousingUnit>>>();
-            List<HousingUnit> housingUnits = new List<HousingUnit>();
+            //List<Task<List<HousingUnit>>> tasks = new List<Task<List<HousingUnit>>>();
+            //List<HousingUnit> housingUnits = new List<HousingUnit>();
 
-            foreach (string inseeCode in inseeCodes)
+            foreach (string localisation in cp)
             {
-                Task<List<HousingUnit>> unitsTask = RetriveFromLocationAsync(inseeCode);
-                tasks.Add(unitsTask);
-                Log(inseeCode + "taskId = " + unitsTask.Id.ToString());
+                List<HousingUnit> currentHousingUnits = RetriveFromLocationAsync("cp=" + localisation).Result;
+                //housingUnits.AddRange();
+                if (currentHousingUnits.Count != 0)
+                {
+                    try
+                    {
+                        _context.HousingUnits.AddRange(currentHousingUnits);
+                        _context.SaveChanges();
+                        Log(localisation + $";Adding {currentHousingUnits.Count} Housing Units to the DB");
+                    }
+                    catch (Exception e)
+                    {
+                        Log(localisation + $";Error Adding {currentHousingUnits.Count} Housing Units to the DB : " + e.Message);
+                    }
+
+                }
             }
 
-            foreach (Task<List<HousingUnit>> unitsTask in tasks)
-            {
-                List<HousingUnit> housingUnitsFromTask = await unitsTask;
-                //Add it to the total
-                housingUnits.AddRange(housingUnitsFromTask);
-                Log("Units added to the main list;" + "taskId = " + unitsTask.Id.ToString());
-            }
+            return true;
 
-            _context.HousingUnits.AddRange(housingUnits);
-            _context.SaveChanges();
+            // foreach (Task<List<HousingUnit>> unitsTask in tasks)
+            // {
+            //     List<HousingUnit> housingUnitsFromTask = await unitsTask;
+            //     //Add it to the total
+            //     housingUnits.AddRange(housingUnitsFromTask);
+            //     Log("Units added to the main list;" + "taskId = " + unitsTask.Id.ToString());
+            // }
+
+
 
             // foreach (HousingUnit housingUnit in housingUnits)
             // {
@@ -68,8 +83,6 @@ namespace Ferret.Services
             //     }
             // }
 
-            Log("End of main loop; HousingUnits.Count = " + housingUnits.Count.ToString());
-
         }
 
         private async Task<List<HousingUnit>> RetriveFromLocationAsync(string localisation)
@@ -77,36 +90,53 @@ namespace Ferret.Services
             _transactionType = TransactionType.rent;
             List<HousingUnit> housingUnits = new List<HousingUnit>();
 
-            string clientURL = $"http://ws.seloger.com/search.xml?ci={localisation}&idtt=1";
+            string clientURL = $"http://ws.seloger.com/search.xml?{localisation}&idtt=1";
 
             Page firstPage = await RetrivePageFromURLAsync(clientURL);
-            if (firstPage != null)
+            if (firstPage.HousingUnits != null)
             {
                 housingUnits.AddRange(firstPage.HousingUnits);
-            }
-            else
-            {
-                Log("First page is null;" + clientURL);
             }
 
             int pageNumber = firstPage.PageMax;
 
+
             //If the result is paginated
             if (pageNumber > 1)
             {
-                List<Task<Page>> tasks = new List<Task<Page>>();
+                int[] pageNumbers = Enumerable.Range(2, pageNumber).ToArray();
 
-                for (int i = 2; i <= pageNumber; i++)
-                {
-                    string paginatedClientUrl = clientURL + $"&SEARCHpg={i.ToString()}";
-                    tasks.Add(RetrivePageFromURLAsync(paginatedClientUrl));
-                }
+                Parallel.ForEach(pageNumbers, (currentPage) =>
+                                {
+                                    string paginatedClientUrl = clientURL + $"&SEARCHpg={currentPage.ToString()}";
 
-                foreach (Task<Page> task in tasks)
-                {
-                    Page page = await task;
-                    housingUnits.AddRange(page.HousingUnits);
-                }
+                                    Page page = RetrivePageFromURLAsync(paginatedClientUrl).Result;
+                                    if (page.HousingUnits != null)
+                                    {
+                                        housingUnits.AddRange(page.HousingUnits);
+                                    }
+                                    else
+                                    {
+                                        Log("Null housing Unist;" + paginatedClientUrl);
+                                    }
+                                });
+
+                // List<Task<Page>> tasks = new List<Task<Page>>();
+
+                // for (int i = 2; i <= pageNumber; i++)
+                // {
+                //     Parallel.ForEach()
+
+
+                //     if (i % 10 == 0)
+                //     {
+                //         foreach (Task<Page> task in tasks)
+                //         {
+
+                //         }
+                //         tasks.Clear();
+                //     }
+                // }
             }
 
             return housingUnits;
@@ -118,16 +148,34 @@ namespace Ferret.Services
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Clear();
 
-            using (Stream response = await client.GetStreamAsync(clientURL))
+            HttpResponseMessage response = await client.GetAsync(clientURL);
+            if (response.IsSuccessStatusCode)
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(recherche));
-                recherche recherche = (recherche)serializer.Deserialize(response);
+                using (Stream stream = await response.Content.ReadAsStreamAsync())
+                {
 
-                List<HousingUnit> housingUnits = RetriveHousingUnits(recherche);
+                    XmlSerializer serializer = new XmlSerializer(typeof(recherche));
+                    recherche recherche = (recherche)serializer.Deserialize(stream);
 
-                Log("RetrivePageFromURLAsync;" + clientURL + ";" + housingUnits.Count().ToString());
+                    if (recherche.annonces != null)
+                    {
+                        List<HousingUnit> housingUnits = RetriveHousingUnits(recherche);
 
-                return new Page(recherche.pageMax ?? 1, housingUnits);
+                        Log("RetrivePageFromURLAsync;" + clientURL + ";" + housingUnits.Count().ToString());
+
+                        int? pageNum = Convert.ToInt32(recherche.pageMax);
+
+                        return new Page(pageNum ?? 1, housingUnits);
+                    }
+                    else
+                    {
+                        return new Page(1, null);
+                    }
+                }
+            }
+            else
+            {
+                return new Page(1, null);
             }
         }
 

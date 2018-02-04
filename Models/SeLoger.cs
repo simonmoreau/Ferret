@@ -32,13 +32,13 @@ namespace Ferret.Models
 
         private string resumeSansTriField;
 
-        private int? nbTrouveesField;
+        private string nbTrouveesField;
 
-        private int? nbAffichablesField;
+        private string nbAffichablesField;
 
         private string pageCouranteField;
 
-        private int? pageMaxField;
+        private string pageMaxField;
 
         private string pageSuivanteField;
 
@@ -74,7 +74,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public int? nbTrouvees
+        public string nbTrouvees
         {
             get
             {
@@ -88,7 +88,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public int? nbAffichables
+        public string nbAffichables
         {
             get
             {
@@ -116,7 +116,7 @@ namespace Ferret.Models
 
         /// <remarks/>
         [XmlElement(IsNullable = true)]
-        public int? pageMax
+        public string pageMax
         {
             get
             {
